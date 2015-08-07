@@ -28,11 +28,11 @@ Email   : carbonsphere@gmail.com<br>
 
   - Download OpenVPN Container
 
-		docker pull carbonsphere/dock-openvpn
+				docker pull carbonsphere/dock-openvpn
 
   - Download Easy RSA Container (Optional - If you have required CA keys and certs)
 
-		docker pull carbonsphere/dock-easy-rsa
+				docker pull carbonsphere/dock-easy-rsa
 
   - Required configuration files
 
