@@ -12,6 +12,13 @@ if [ ! -c /dev/net/tun ]; then
     mknod /dev/net/tun c 10 200
 fi
 
+echo -e "Parsing tun interface ip\n"
+VPNNET=`ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}' | tail -1`
+VPNIP=$VPNNET/24
+
+echo -e "Adding $VPNIP nat rules\n"
+iptables -t nat -A POSTROUTING -s $VPNIP -o eth0 -j MASQUERADE
+
 TLSKEYNAME="ta.key"
 
 if [ ! -e "$PWD/$TLSKEYNAME" ]; then
