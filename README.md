@@ -6,22 +6,32 @@ Email   : carbonsphere@gmail.com<br>
   OpenVPN Server in a container! This container let's you quickly setup a VNP server on the fly. Comes with complete working example scripts that will generate all required certificates and keys for your OpenVPN server. 
 
 * Example scripts requires "carbonsphere/dock-easy-rsa":
+
 		docker pull carbonsphere/dock-easy-rsa
+
 * Easy RSA source code location:
+
 		https://github.com/carbonsphere/dock-easy-rsa.git
+
 * Container location:
+
 		docker pull carbonsphere/dock-openvpn
+
 * Source code location: 
+
 		https://github.com/carbonsphere/dock-openvpn.git
+
 
 ### RUN notice and procedure
 
 * Pull containers
 
   - Download OpenVPN Container
+
         docker pull carbonsphere/dock-openvpn
 
   - Download Easy RSA Container (Optional - If you have required CA keys and certs)
+  
         docker pull carbonsphere/dock-easy-rsa
 
   - Required configuration files
