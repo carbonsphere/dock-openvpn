@@ -110,4 +110,7 @@ change it to UDP, just besure to match it in client.ovpn
 
 	- "carbonsphere/dock-easy-rsa" can help you generate additional client ovpn configuration file with certificate and key based on your CA. Check dock-easy-rsa documentation for more information. 
 
-This is a docker container source file. This container allows you to start your own VPN server without mess. This container uses Centos6. Certificates and key generation is seperated into another container at "carbonsphere/dock-easy-rsa". Check its README for howto generate CA and Server certificate/key.
+### Certificates and Services seperation.
+
+* These containers are designed to separate cert/key generation tools, vpn services, and the actual cert/key and server configuration file. You can just backup your cert/key and server configuration files without mess. On the new environment, just download dock-easy-rsa if you need to generate more client certificates.
+
