@@ -52,24 +52,24 @@ Email   : carbonsphere@gmail.com<br>
 
       1. Make a directory.  
 
-			mkdir my_openvpn_conf
+				mkdir my_openvpn_conf
 
       2. Copy example files into my_openvpn_conf 
 
-			docker run --rm -it -v $(pwd)/my_openvpn_conf:/dest carbonsphere/dock-openvpn cp_example.sh
+				docker run --rm -it -v $(pwd)/my_openvpn_conf:/dest carbonsphere/dock-openvpn cp_example.sh
 
       3. Change directory into my_openvpn_conf
 
-			cd my_openvpn_conf
+				cd my_openvpn_conf
 
       4. Run CA generation script to complete generate CA/Server certificates/keys and DH
 
-			./gen_ca_init.sh
+				./gen_ca_init.sh
 
       4. After script execution, you should now have ca.crt server.crt server.key dh2048.pem. We are ready to start openvpn server! (You can press enter on all questions except [y/n]. Must press 'y' to generate required files)
 
       5. Back out of the directory and follow Start Server procedure. 
-			cd ..
+				cd ..
 
 * Start Server
 
@@ -82,8 +82,8 @@ Email   : carbonsphere@gmail.com<br>
 
 	- Docker parameter used
 
-			cap-add = NET_ADMIN # Allows access to docker interface on host.
-			name = openvpn      # Always name your container for ease of follow up like stop and remove.
+		cap-add = NET_ADMIN # Allows access to docker interface on host.
+		name = openvpn      # Always name your container for ease of follow up like stop and remove.
 
 * Default configuration (in server.conf.example)
 
