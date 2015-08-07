@@ -28,11 +28,11 @@ Email   : carbonsphere@gmail.com<br>
 
   - Download OpenVPN Container
 
-        docker pull carbonsphere/dock-openvpn
+		docker pull carbonsphere/dock-openvpn
 
   - Download Easy RSA Container (Optional - If you have required CA keys and certs)
-  
-        docker pull carbonsphere/dock-easy-rsa
+
+		docker pull carbonsphere/dock-easy-rsa
 
   - Required configuration files
 
@@ -52,62 +52,62 @@ Email   : carbonsphere@gmail.com<br>
 
       1. Make a directory.  
 
-          mkdir my_openvpn_conf
+			mkdir my_openvpn_conf
 
       2. Copy example files into my_openvpn_conf 
 
-          docker run --rm -it -v $(pwd)/my_openvpn_conf:/dest carbonsphere/dock-openvpn cp_example.sh
+			docker run --rm -it -v $(pwd)/my_openvpn_conf:/dest carbonsphere/dock-openvpn cp_example.sh
 
       3. Change directory into my_openvpn_conf
 
-          cd my_openvpn_conf
+			cd my_openvpn_conf
 
       4. Run CA generation script to complete generate CA/Server certificates/keys and DH
 
-          ./gen_ca_init.sh
+			./gen_ca_init.sh
 
       4. After script execution, you should now have ca.crt server.crt server.key dh2048.pem. We are ready to start openvpn server! (You can press enter on all questions except [y/n]. Must press 'y' to generate required files)
 
       5. Back out of the directory and follow Start Server procedure. 
-          cd ..
+			cd ..
 
 * Start Server
 
-- Have all the configuration files in a directory. Then we'll mount that directory as a volume with path "/etc/openvpn" into dock-openvpn
+	- Have all the configuration files in a directory. Then we'll mount that directory as a volume with path "/etc/openvpn" into dock-openvpn
 
-    EX:  I have my files in ./my_openvpn_conf/
-        docker run -d -p 1194:1194/tcp -v $(pwd)/my_open_vpn_conf:/etc/openvpn --cap-add=NET_ADMIN --name openvpn carbonsphere/dock-openvpn
+		EX:  I have my files in ./my_openvpn_conf/
+				docker run -d -p 1194:1194/tcp -v $(pwd)/my_open_vpn_conf:/etc/openvpn --cap-add=NET_ADMIN --name openvpn carbonsphere/dock-openvpn
 
-      Note: Becareful on $(pwd). Since you'll need to change directory into relative path in order for this to run correctly or else openvpn container will not start.
+		Note: Becareful on $(pwd). Since you'll need to change directory into relative path in order for this to run correctly or else openvpn container will not start.
 
-- Docker parameter used
+	- Docker parameter used
 
-      cap-add = NET_ADMIN # Allows access to docker interface on host.
-      name = openvpn      # Always name your container for ease of follow up like stop and remove.
+			cap-add = NET_ADMIN # Allows access to docker interface on host.
+			name = openvpn      # Always name your container for ease of follow up like stop and remove.
 
-- Default configuration (in server.conf.example)
+* Default configuration (in server.conf.example)
 
-* Ports 1194
+	- Ports 1194
 
-* Protocol TCP  # Default is TCP since that is what I use on my environment. You can 
+	- Protocol TCP  # Default is TCP since that is what I use on my environment. You can 
 change it to UDP, just besure to match it in client.ovpn
 
-* dev tun
+	- dev tun
 
-* No push routes 
+	- No push routes 
 
-* dhcp-option default to 8.8.8.8 and 8.8.4.4
+	- dhcp-option default to 8.8.8.8 and 8.8.4.4
 
-* Enabled client-to-client
+	- Enabled client-to-client
 
-* "redirect-gateway def1 bypass-dhcp" is DISABLED since it will interfere with my test environment and create a loop. 
+	- "redirect-gateway def1 bypass-dhcp" is DISABLED since it will interfere with my test environment and create a loop. 
 
     Note: You can change any of these parameters in server.conf but besure to match it with client.ovpn
 
-- Default examples of server/client configuration is provided in ./openvpn
+	- Default examples of server/client configuration is provided in ./openvpn
 
 * Client Certificate
 
-* "carbonsphere/dock-easy-rsa" can help you generate additional client ovpn configuration file with certificate and key based on your CA. Check dock-easy-rsa documentation for more information. 
+	- "carbonsphere/dock-easy-rsa" can help you generate additional client ovpn configuration file with certificate and key based on your CA. Check dock-easy-rsa documentation for more information. 
 
 This is a docker container source file. This container allows you to start your own VPN server without mess. This container uses Centos6. Certificates and key generation is seperated into another container at "carbonsphere/dock-easy-rsa". Check its README for howto generate CA and Server certificate/key.
