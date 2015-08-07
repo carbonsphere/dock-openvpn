@@ -78,5 +78,6 @@ echo "#key-direction 1" >> $CONF
 echo "#For user PAM auth" >> $CONF
 echo "#Besure auth_pam plugin is enabled in server.conf" >> $CONF
 echo "#auth-user-pass" >> $CONF
+echo "#redirect-gateway def1" >> $CONF
 echo "auth-nocache" >> $CONF
 
