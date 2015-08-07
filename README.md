@@ -68,22 +68,22 @@ Email   : carbonsphere@gmail.com<br>
 
       4. After script execution, you should now have ca.crt server.crt server.key dh2048.pem. We are ready to start openvpn server! (You can press enter on all questions except [y/n]. Must press 'y' to generate required files)
 
-      5. Back out of the directory and follow Start Server procedure. 
+      5. Back out of the directory and follow Start Server procedure.
+
 				cd ..
 
 * Start Server
 
 	- Have all the configuration files in a directory. Then we'll mount that directory as a volume with path "/etc/openvpn" into dock-openvpn
 
-		EX:  I have my files in ./my_openvpn_conf/
-				docker run -d -p 1194:1194/tcp -v $(pwd)/my_open_vpn_conf:/etc/openvpn --cap-add=NET_ADMIN --name openvpn carbonsphere/dock-openvpn
+			docker run -d -p 1194:1194/tcp -v $(pwd)/my_open_vpn_conf:/etc/openvpn --cap-add=NET_ADMIN --name openvpn carbonsphere/dock-openvpn
 
 		Note: Becareful on $(pwd). Since you'll need to change directory into relative path in order for this to run correctly or else openvpn container will not start.
 
 	- Docker parameter used
 
-		cap-add = NET_ADMIN # Allows access to docker interface on host.
-		name = openvpn      # Always name your container for ease of follow up like stop and remove.
+			cap-add = NET_ADMIN # Allows access to docker interface on host.
+			name = openvpn      # Always name your container for ease of follow up like stop and remove.
 
 * Default configuration (in server.conf.example)
 
