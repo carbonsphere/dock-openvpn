@@ -10,5 +10,9 @@ fi
 
 cp /example/* $CPDIR
 
-echo -e "Copy completed.. you can start example file by running gen_ca_init.sh"
+echo -e "Copy completed.. you can start example file by running gen_ca_init.sh\n"
+
+echo -e "Generate ta.key\n"
+
+openvpn --genkey --secret $CPDIR/ta.key
 
