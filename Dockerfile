@@ -15,8 +15,12 @@ RUN yum -y install openvpn; yum -y clean all
 
 EXPOSE 1194/tcp
 
-ADD ovpn_start.sh /root/ovpn_start.sh
+ADD ovpn_start.sh /usr/local/bin/ovpn_start.sh
+ADD cp_example.sh /usr/local/bin/cp_example.sh
+ADD example /example
+
+ENV CPDIR						/dest
 
 WORKDIR /etc/openvpn
 
-CMD ["/root/ovpn_start.sh"]
+CMD ["ovpn_start.sh"]
