@@ -70,11 +70,20 @@ echo "</key>" >> $CONF
 echo "<cert>" >> $CONF
 cat ./keys/$srvname.crt >> $CONF
 echo "</cert>" >> $CONF
+
+read -p "Enable TLS Auth? [y/N] " tlsauth
+if [[ ($tlsauth == 'y' ) || ( $tlsauth == 'Y') ]]; then
 echo "#For tls-auth. " >> $CONF
-echo "#Besure tls-auth is enabled in server.conf and paste ta.key here" >> $CONF
-echo "#<tls-auth>" >> $CONF
-echo "#</tls-auth>" >> $CONF
-echo "#key-direction 1" >> $CONF
+echo "<tls-auth>" >> $CONF
+  if ! [ -e "ta.key" ]; then
+    echo "Warning: ta.key doesn't exist."
+  else
+    cat ta.key >> $CONF
+  fi
+echo "</tls-auth>" >> $CONF
+echo "key-direction 1" >> $CONF
+fi
+
 echo "#For user PAM auth" >> $CONF
 echo "#Besure auth_pam plugin is enabled in server.conf" >> $CONF
 echo "#auth-user-pass" >> $CONF
